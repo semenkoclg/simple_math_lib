@@ -42,5 +42,34 @@ namespace MathLib
 		if (b == 0) return a;
 		return GCD(b, a % b);
 	}
+    // Function for solving quadratic equation ax^2 + bx + c = 0
+    std::vector<double> solveQuadratic(double a, double b, double c)
+    {
+        if (a == 0)
+        {
+            throw std::invalid_argument(
+                "Coefficient a cannot be zero in a quadratic equation."
+            );
+        }
+
+        double discriminant = b * b - 4 * a * c;
+
+        if (discriminant < 0)
+        {
+            return {};
+        }
+
+        if (discriminant == 0)
+        {
+            return { -b / (2 * a) };
+        }
+
+        double sqrtDiscriminant = std::sqrt(discriminant);
+
+        double x1 = (-b + sqrtDiscriminant) / (2 * a);
+        double x2 = (-b - sqrtDiscriminant) / (2 * a);
+
+        return { x1, x2 };
+    }
 }
 

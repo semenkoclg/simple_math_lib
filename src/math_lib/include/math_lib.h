@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdexcept>
+#include <vector>
 
 namespace MathLib
 {	
@@ -69,4 +70,7 @@ namespace MathLib
 
     // Function to search GCD
     int GCD(int a, int b);
+    // Function for solving quadratic equation ax^2 + bx + c = 0
+    std::vector<double> solveQuadratic(double a, double b, double c);
+
 }
