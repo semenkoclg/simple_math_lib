@@ -76,4 +76,34 @@ TEST_F(MathLibTestFixture, IsPrimeTest)
 TEST_F(MathLibTestFixture, GreatestCommonDivider)
 {
     EXPECT_EQ(MathLib::GCD(10, 6), 2);
+TEST_F(MathLibTestFixture, SolveQuadraticEquation)
+{
+    // x^2 - 5x + 6 = 0
+    // Roots: 3 and 2
+    auto roots = MathLib::solveQuadratic(1, -5, 6);
+
+    ASSERT_EQ(roots.size(), 2);
+    EXPECT_TRUE(MathLib::isEqual(roots[0], 3.0));
+    EXPECT_TRUE(MathLib::isEqual(roots[1], 2.0));
+
+    // x^2 - 4x + 4 = 0
+    // One root: 2
+    roots = MathLib::solveQuadratic(1, -4, 4);
+
+    ASSERT_EQ(roots.size(), 1);
+    EXPECT_TRUE(MathLib::isEqual(roots[0], 2.0));
+
+    // x^2 + x + 1 = 0
+    // No real roots
+    roots = MathLib::solveQuadratic(1, 1, 1);
+
+    EXPECT_TRUE(roots.empty());
+
+    // a = 0 is not a quadratic equation
+    EXPECT_THROW(
+        MathLib::solveQuadratic(0, 2, 1),
+        std::invalid_argument
+    );
+}
+
 }
