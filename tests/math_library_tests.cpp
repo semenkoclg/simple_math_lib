@@ -77,3 +77,18 @@ TEST_F(MathLibTestFixture, GreatestCommonDivider)
 {
     EXPECT_EQ(MathLib::GCD(10, 6), 2);
 }
+
+TEST_F(MathLibTestFixture, ThirdAngle)
+{
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(60, 60), 60);
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(90, 45), 45);
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(30, 100), 50);
+}
+
+TEST_F(MathLibTestFixture, InvalidTriangleAngles)
+{
+    EXPECT_THROW(MathLib::thirdAngle(0, 60), std::invalid_argument);
+    EXPECT_THROW(MathLib::thirdAngle(90, 90), std::invalid_argument);
+    EXPECT_THROW(MathLib::thirdAngle(100, 100), std::invalid_argument);
+}
+
